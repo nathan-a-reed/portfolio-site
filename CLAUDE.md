@@ -6,7 +6,7 @@ Source for `nathanreed.dev`: background, experience, and projects, with links to
 
 | | |
 |---|---|
-| Jira project | Product work: space to be created. Repository setup: `FND` (https://nathan-a-reed.atlassian.net/browse/FND) |
+| Jira project | `PORT`: https://nathan-a-reed.atlassian.net/browse/PORT. Repository setup work is tracked in `FND`. |
 | Confluence space | `ENG` (Engineering): https://nathan-a-reed.atlassian.net/wiki/spaces/ENG |
 | Default branch | `main` |
 | Related repos | `aws-foundation` (accounts, deployment roles, DNS), `engineering-standards` (source of `docs/standards/`) |
@@ -29,7 +29,7 @@ Source for `nathanreed.dev`: background, experience, and projects, with links to
 | In Review | In Review |
 | Done | Done |
 
-Issue types: Epic, Story, Task, Bug, Feature, Subtask
+Issue types: Epic, Story, Task, Bug, Subtask
 
 ## Tech stack
 
