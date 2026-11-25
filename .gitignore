@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.astro/
+cdk.out/
+coverage/
+test-results/
+playwright-report/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+CLAUDE.local.md
+.claude/settings.local.json
