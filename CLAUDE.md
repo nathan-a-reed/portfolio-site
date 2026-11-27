@@ -71,9 +71,8 @@ None yet. Variables will be documented in `.env.example`. Never commit `.env`.
 
 ## Pull requests
 
-- Required CI checks: `PR hygiene`; build and test checks are added with the scaffold
+- Required CI checks: `PR hygiene / PR hygiene`; build and test checks are added with the scaffold
 - Merge strategy: squash merge
-- Extra checklist items: screenshots for visible changes
 
 ## Confluence page map
 
