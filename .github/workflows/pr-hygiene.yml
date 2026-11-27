@@ -11,54 +11,5 @@ permissions:
 jobs:
   pr-hygiene:
     name: PR hygiene
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Check branch name
-        env:
-          BRANCH: ${{ github.head_ref }}
-        run: |
-          types='build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test'
-          pattern="^(($types)/([A-Z][A-Z0-9]+-[0-9]+-)?[a-z0-9]+(-[a-z0-9]+){1,5}|dependabot/.+|revert-.+)$"
-          if [[ ! "$BRANCH" =~ $pattern ]]; then
-            echo "::error::Branch '$BRANCH' must be <type>/<KEY>-<number>-<description> or <type>/<description>. See CONTRIBUTING.md."
-            exit 1
-          fi
-
-      - name: Check title
-        env:
-          BRANCH: ${{ github.head_ref }}
-          TITLE: ${{ github.event.pull_request.title }}
-          AUTHOR: ${{ github.event.pull_request.user.login }}
-        run: |
-          types='build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test'
-          pattern="^($types)(\([a-z0-9-]+\))?!?: [a-z0-9].*[^. ]$"
-          if [[ ! "$TITLE" =~ $pattern ]]; then
-            echo "::error::Title must follow Conventional Commits with a lowercase summary and no trailing period. See CONTRIBUTING.md."
-            exit 1
-          fi
-          if [[ "$AUTHOR" != "dependabot[bot]" ]] && (( ${#TITLE} > 72 )); then
-            echo "::error::Title is ${#TITLE} characters; the limit is 72."
-            exit 1
-          fi
-          if [[ "$BRANCH" =~ ^[a-z]+/([A-Z][A-Z0-9]+-[0-9]+)- ]]; then
-            key="${BASH_REMATCH[1]}"
-            if [[ "$TITLE" != *" [$key]" ]]; then
-              echo "::error::Branch references $key, so the title must end with [$key]."
-              exit 1
-            fi
-          fi
-
-      - name: Check for tool attribution
-        env:
-          GH_TOKEN: ${{ github.token }}
-          REPO: ${{ github.repository }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-          PR_BODY: ${{ github.event.pull_request.body }}
-        run: |
-          pattern='co-authored-by:.*(claude|anthropic)|noreply@anthropic\.com|claude\.ai/code|generated with \[?claude|🤖'
-          messages=$(gh api --paginate "repos/$REPO/pulls/$PR_NUMBER/commits" --jq '.[].commit.message')
-          if printf '%s\n%s\n' "$PR_BODY" "$messages" | grep -qiE "$pattern"; then
-            echo "::error::Remove attribution trailers, session links, and robot emojis from the commits and description."
-            exit 1
-          fi
+    # The standards sync replaces this ref with the commit SHA of the shared workflow.
+    uses: nathan-a-reed/engineering-standards/.github/workflows/pr-hygiene.yml@0daf3c6b2101b75a7dfb158d2dcd2e48553087eb
