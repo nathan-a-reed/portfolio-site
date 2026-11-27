@@ -69,7 +69,7 @@ Every dependency is code that must be secured, updated, and shipped. Add one onl
 
 - Check the approved lists in `python.md` and `frontend.md` first.
 - A runtime dependency outside those lists requires an ADR covering the problem, alternatives (including writing it ourselves), size, maintenance activity, license, and security history.
-- Development tools meet the same bar; justify them in the pull request description.
+- Development tools meet the same bar; justify them in the commit body.
 - Prefer packages with few transitive dependencies and permissive licenses (MIT, Apache-2.0, BSD, ISC).
 - Commit lockfiles. Update versions through Dependabot pull requests.
 

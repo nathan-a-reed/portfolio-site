@@ -49,7 +49,7 @@ Commits follow [Conventional Commits](https://www.conventionalcommits.org/):
 ```
 <type>(<scope>): <summary>
 
-<body: why, when not obvious>
+<body: why, only when the header cannot say it>
 
 Refs: <KEY>-<number>
 ```
@@ -69,7 +69,7 @@ Refs: <KEY>-<number>
 | `revert` | Reverting an earlier change |
 
 - **Header:** imperative mood, lowercase, no trailing period, at most 72 characters. Scopes are listed in each repository's `CLAUDE.md`.
-- **Body:** wrapped at 72 characters. Explains why, and any consequences that are not obvious. Omitted when the header says everything.
+- **Body:** wrapped at 72 characters. Included only when it adds a why: the reason for the change, or consequences that are not obvious.
 - **Footer:** `Refs: <KEY>-<number>` for ticketed work, and `BREAKING CHANGE: <what>` when applicable.
 - Each commit is one logical change and leaves the build passing.
 
@@ -77,11 +77,9 @@ Commit messages and pull requests describe the change in a neutral voice. They d
 
 ## Pull requests
 
-- Open pull requests as drafts and mark them ready for review when complete.
+- Open pull requests as drafts and mark them ready for review when complete. Coding agents push branches but do not open pull requests; see the agent workflow standard, `agent-workflow.md`.
 - **Title:** Conventional Commits format with the ticket key at the end, at most 72 characters: `feat(web): add project cards [ABC-12]`. Maintenance titles have no key. The title becomes the squash commit on `main`.
-- **Description:** complete every section of the template and remove its guidance comments. Write "N/A" only where a section does not apply. UI changes always include screenshots or `Not captured — <reason>`.
-- **Self-contained:** a reader without Jira access can tell what changed and why. Link the ticket by its full URL.
-- **Testing:** list only what was actually run, with results, and state what was not tested and why.
+- **Description:** free-form, with no required format.
 - **Size:** aim for under about 400 changed lines, excluding lockfiles and generated files. Explain anything larger or split it.
 - Merge only when required checks pass and conversations are resolved.
 
@@ -101,7 +99,7 @@ Every repository requires at least:
 - Tests are added or updated.
 - Docs and ADRs are updated where needed.
 - Branch, commits, and title follow this guide.
-- The pull request description is complete, and the CI result is known.
+- The CI result is known.
 
 ## Local development
 
